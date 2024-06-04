@@ -5,23 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <header>
-      <h1>Todo List</h1>
+      <h1 class="header1">Task <span class="title">Manager</span></h1>
     </header>
     <section>
-    <div class="addtodo">
-      <button onclick="handleAddTodo()">Add your To-Do</button> 
-    </div>
-          <div id="todobox">  
+      <div class="grid-item-filter">
+        <h2>Filter</h2>
+        <ul>
+          <li><i class="fas fa-tasks"></i>ALL</li>
+          <li><i class="fas fa-check"></i>Completed</li>
+          <li><i class="fas fa-calendar-week"></i>Week</li>
+          <li><i class="fas fa-calendar-day"></i>Today</li>
+        </ul>
       </div>
-    <div class="lidiv">
-      <ul class="todo-lists" id="todo-list">
-      </ul>
-    </div>
+      <div class="tasks">
+        <h2>Tasks</h2>
+         <div class="task1" id="taskcontainer">
+         </div>
+        <button id="addtaskBtn" onclick="handleAddTodo()">Add Task</button>
+      </div>
     </section>
+    <div id="todobox">
+    </div>
   </body>
 </html>
- 
