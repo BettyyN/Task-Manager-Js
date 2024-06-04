@@ -5,27 +5,148 @@ Secondary: #F2F2F2
 Primary: #6A0DAD 
 Secondary: #9A6ECC  */
 
+html,
+body {
+  height: 100%;
+}
 
 body {
   width: 100%;
-  margin-top: 0;
-  padding-top: 0px;
+  background-color: #000;
+  height: 100%;
 }
 header {
-  width:100%;
-  background-color: #000;
-  margin-top: -22px;
+  width: 100%;
+  background-color: transparent;
   height: 80px;
-  text-align: center;
-  align-items: center;
-  padding-top: 30px;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+header .header1 {
   color: white;
-  margin-left: -10px;
+  font-size: 40px;
 }
-header h1{
-    text-decoration: underline;
+header .title {
+  color: #6a0dad;
 }
+
 section {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 25% 65%;
+  margin-left: 30px;
+  margin-top: 10px;
+  height: 75%;
+  justify-content: center;
+}
+
+section .grid-item-filter {
+  background-color: #333333;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+section .grid-item-filter h2 {
+  font-size: large;
+  color: #c291f3;
+  padding-left: 38px;
+}
+
+section .grid-item-filter li {
+  font-size: medium;
+  color: #c0bec2;
+  list-style-type: none;
+  display: flex;
+  height: 25px;
+  align-items: center;
+  padding: 5px;
+}
+
+section .grid-item-filter ul :hover {
+  border-radius: 10px;
+  background-color: #4a4a4b;
+}
+
+ #addtaskBtn{
+  color: white;
+  background-color: #6a0dad;
+  padding: 5px;
+  border-radius: 15px;
+  border: none;
+  width: 90px;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+}
+
+i {
+  padding-right: 10px;
+  color: #c291f3;
+}
+
+section .tasks {
+  background-color: #333333;
+  margin-left: 15px;
+  border-radius: 25px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+section .tasks .task1 {
+  width: 70%;
+  height: 30px;
+  border-bottom: 1px solid rgb(44, 44, 44);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  padding-left: 8px;
+  background-color: #505050;
+  justify-items: center;
+}
+
+section .tasks .task1 h3 {
+  font-size: medium;
+}
+
+.displayTitle {
+  display: flex;
+  align-items: center;
+  margin-top: -7px;
+}
+
+.task1 #edit {
+  margin-left: auto;
+}
+
+#textField{
+  display: none;
+}
+
+#todobox{
+  width: 50%;
+  z-index:auto;
+  margin: auto;
+}
+
+#btn{
+    color: white;
+  background-color: #6a0dad;
+  padding: 5px;
+  border-radius: 15px;
+  border: none;
+  width: 90px;
+  height: 40px;
+}
+
+
+
+/* section {
   width: 75%;
   display: flex;
   flex-direction: column;
@@ -73,4 +194,4 @@ button{
     font-size: small;
     height: 30px;
     width: 70px;
-}
+} */
