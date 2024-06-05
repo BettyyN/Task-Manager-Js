@@ -144,10 +144,7 @@ function handleEditTask(id) {
 //   const addtodo = document.getElementById("todobox");
 //   addtodo.innerHTML = "";
 // }
-// function handleDeleteTodo(id) {
-//   window.todos = window.todos.filter((todo) => todo.id !== id);
-//   updateTodoLists();
-// }
+
 
 // function handleEditTodo(id) {
 //   const todoToEdit = window.todos.find((todo) => todo.id === id);
