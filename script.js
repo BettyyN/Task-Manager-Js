@@ -13,26 +13,31 @@ document.addEventListener("DOMContentLoaded", function () {
       description: "This is the description for Task 2.",
     },
   ];
- window.displayTask = function (task) {
-   return `
+  window.displayTask = function (task) {
+    return `
           <div class="displayTitle">
             <i class="fas fa-caret-down" onclick="displayText(this)" id="dropdown"></i>
             <h3>${task.title}</h3>
-            <i class="fas fa-edit" id="edit"></i>
-            <i class="fas fa-trash" id="delete"></i>
+            <i class="fas fa-edit" id="edit" onclick="handleEditTask(${task.id})"></i>
+            <i class="fas fa-trash" id="delete" data-id="${task.id}" onclick="handleDeleteTask(this)"></i>
           </div>
           <div id="textField">
             <h4>Due Date: <span>${task.dueDate}</span></h4>
             <p>${task.description}</p>
           </div>
   `;
- };
+  };
 
-  var taskContainer = document.getElementById("taskcontainer");
-  tasks.forEach(function (task) {
-    var taskMarkup = displayTask(task);
-    taskContainer.insertAdjacentHTML("beforeend", taskMarkup);
-  });
+  window.renderTasks = function () {
+    var taskContainer = document.getElementById("taskcontainer");
+    taskContainer.innerHTML = "";
+    tasks.forEach(function (task) {
+      var taskMarkup = displayTask(task);
+      taskContainer.insertAdjacentHTML("beforeend", taskMarkup);
+    });
+  };
+
+  renderTasks();
 });
 
 function displayText(clickedTask) {
@@ -76,14 +81,14 @@ function handleAddTodo() {
         description: description,
       };
 
-      window.tasks.push(newTask); // Add new task to the tasks array
-      localStorage.setItem("tasks", JSON.stringify(window.tasks)); 
+      window.tasks.push(newTask); 
+      localStorage.setItem("tasks", JSON.stringify(window.tasks));
 
       var taskContainer = document.getElementById("taskcontainer");
       var taskMarkup = displayTask(newTask);
       taskContainer.insertAdjacentHTML("beforeend", taskMarkup);
 
-      // Clear form fields after submission
+
       document.getElementById("taskForm").reset();
     } else {
       alert("Please fill in all fields.");
@@ -91,66 +96,50 @@ function handleAddTodo() {
   });
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   window.todos = [
-//     {
-//       id: "1",
-//       title: "x",
-//       description: " X dgibfgegdghk hllkhl ",
-//       duedate: "2024-04-06",
-//     },
-//     {
-//       id: "2",
-//       title: "y",
-//       description: "Y dgibfgegdghk hllkhl ",
-//       duedate: "2024-05-06",
-//     },
-//     {
-//       id: "3",
-//       title: "z",
-//       description: "Z dgibfgegdghk hllkhl ",
-//       duedate: "2024-06-06",
-//     },
-//   ];
-//   updateTodoLists();
-// });
+function handleDeleteTask(tobedeleted) {
+  const taskId = tobedeleted.getAttribute("data-id");
+  window.tasks = window.tasks.filter((task) => task.id !== taskId);
+  localStorage.setItem("tasks", JSON.stringify(window.tasks));
+  renderTasks();
+}
+function handleEditTask(id) {
+  const taskToEdit = window.tasks.find((task) => task.id === id);
+  if (!taskToEdit) return;
 
-// function handleAddTodo() {
-//   const addtodo = document.getElementById("todobox");
-//   const items = `    <input type="text" id="input1">
-//        <Button onclick="insertTodo()">ADD</Button>
-//         <Button onclick="cancelTodo()">CANCEL</Button>`;
+  const addtodo = document.getElementById("todobox");
+  const items = `    
+    <h2>Edit Task</h2>
+    <form id="editTaskForm">
+      <label for="editTaskTitle">Title</label>
+      <input type="text" id="editTaskTitle" value="${taskToEdit.title}">
+      <label for="editTaskDescription">Description</label>
+      <input type="text" id="editTaskDescription" value="${taskToEdit.description}">
+      <label for="editTaskDueDate">Due date</label>
+      <input type="date" id="editTaskDueDate" value="${taskToEdit.dueDate}">
+      <button type="button" id="submitEditTask">Save Changes</button>
+    </form>`;
+  addtodo.innerHTML = items;
 
-//   addtodo.innerHTML = items;
-// }
+  document
+    .getElementById("submitEditTask")
+    .addEventListener("click", function () {
+      var title = document.getElementById("editTaskTitle").value;
+      var description = document.getElementById("editTaskDescription").value;
+      var dueDate = document.getElementById("editTaskDueDate").value;
 
-// function insertTodo() {
-//   const input1 = document.getElementById("input1");
-//   const value1 = input1.value.trim();
-//   if (value1 !== "") {
-//     window.todos.push({
-//       id: (window.todos.length + 1).toString(),
-//       todoli: value1,
-//     });
-//     input1.value = "";
-//     updateTodoLists();
-//     cancelTodo();
-//   }
-// }
+      if (title && description && dueDate) {
+        window.tasks = window.tasks.map((task) =>
+          task.id === id ? { ...task, title, description, dueDate } : task
+        );
+        localStorage.setItem("tasks", JSON.stringify(window.tasks));
+        renderTasks();
+        addtodo.innerHTML = ""; // Clear the edit form
+      } else {
+        alert("Please fill in all fields.");
+      }
+    });
+}
 
-// function updateTodoLists() {
-//   const todoList = document.getElementById("todo-list");
-//   todoList.innerHTML = ""; // Clear the current list
-//   window.todos.forEach((todo) => {
-//     const li = document.createElement("li");
-//     li.innerHTML = `
-//       <span id="todo">${todo.todoli}</span>
-//       <button onclick="handleEditTodo('${todo.id}')">Edit</button>
-//       <button onclick="handleDeleteTodo('${todo.id}')">Delete</button>
-//     `;
-//     todoList.appendChild(li);
-//   });
-// }
 // function cancelTodo() {
 //   const addtodo = document.getElementById("todobox");
 //   addtodo.innerHTML = "";
