@@ -65,6 +65,7 @@ function handleAddTodo() {
     <label for="taskDueDate">Due date</label>
     <input type="date" id="taskDueDate">
     <button type="button" id="submitTask">Submit</button>
+      <button type="button" id="cancleTask">Cancel</button>
   </form>`;
   addtodo.innerHTML = items;
 
@@ -116,7 +117,7 @@ function handleEditTask(id) {
       <input type="text" id="editTaskDescription" value="${taskToEdit.description}">
       <label for="editTaskDueDate">Due date</label>
       <input type="date" id="editTaskDueDate" value="${taskToEdit.dueDate}">
-      <button type="button" id="submitEditTask">Save Changes</button>
+      <button type="button" id="submitEditTask" onclick="cancleTask()">Save Changes</button>
     </form>`;
   addtodo.innerHTML = items;
 
@@ -140,10 +141,10 @@ function handleEditTask(id) {
     });
 }
 
-// function cancelTodo() {
-//   const addtodo = document.getElementById("todobox");
-//   addtodo.innerHTML = "";
-// }
+function cancleTask() {
+  const addtodo = document.getElementById("todobox");
+  addtodo.innerHTML = "";
+}
 
 
 // function handleEditTodo(id) {
