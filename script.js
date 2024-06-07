@@ -65,7 +65,7 @@ function handleAddTodo() {
     <label for="taskDueDate">Due date</label>
     <input type="date" id="taskDueDate">
     <button type="button" id="submitTask">Submit</button>
-      <button type="button" id="cancleTask">Cancel</button>
+    <button type="button" id="cancleTask">Cancel</button>
   </form>`;
   addtodo.innerHTML = items;
 
@@ -94,6 +94,11 @@ function handleAddTodo() {
     } else {
       alert("Please fill in all fields.");
     }
+  });
+
+  document.getElementById("cancleTask").addEventListener("click", function () {
+    const addtodo = document.getElementById("todobox");
+    addtodo.innerHTML = "";
   });
 }
 
@@ -139,13 +144,10 @@ function handleEditTask(id) {
         alert("Please fill in all fields.");
       }
     });
+    
 }
 
-function cancleTask() {
-  const addtodo = document.getElementById("todobox");
-  addtodo.innerHTML = "";
-}
-
+ 
 
 // function handleEditTodo(id) {
 //   const todoToEdit = window.todos.find((todo) => todo.id === id);
