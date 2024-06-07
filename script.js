@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="displayTitle">
             <i class="fas fa-caret-down" onclick="displayText(this)" id="dropdown"></i>
             <h3>${task.title}</h3>
-            <i class="fas fa-edit" id="edit" onclick="handleEditTask(${task.id})"></i>
+            <i class="fas fa-edit" id="edit" onclick="handleEditTask('${task.id}')"></i>
             <i class="fas fa-trash" id="delete" data-id="${task.id}" onclick="handleDeleteTask(this)"></i>
           </div>
           <div id="textField">
@@ -108,6 +108,7 @@ function handleDeleteTask(tobedeleted) {
   localStorage.setItem("tasks", JSON.stringify(window.tasks));
   renderTasks();
 }
+
 function handleEditTask(id) {
   const taskToEdit = window.tasks.find((task) => task.id === id);
   if (!taskToEdit) return;
