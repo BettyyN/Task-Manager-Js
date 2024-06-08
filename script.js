@@ -82,13 +82,12 @@ function handleAddTodo() {
         description: description,
       };
 
-      window.tasks.push(newTask); 
+      window.tasks.push(newTask);
       localStorage.setItem("tasks", JSON.stringify(window.tasks));
 
       var taskContainer = document.getElementById("taskcontainer");
       var taskMarkup = displayTask(newTask);
       taskContainer.insertAdjacentHTML("beforeend", taskMarkup);
-
 
       document.getElementById("taskForm").reset();
     } else {
@@ -123,7 +122,8 @@ function handleEditTask(id) {
       <input type="text" id="editTaskDescription" value="${taskToEdit.description}">
       <label for="editTaskDueDate">Due date</label>
       <input type="date" id="editTaskDueDate" value="${taskToEdit.dueDate}">
-      <button type="button" id="submitEditTask" onclick="cancleTask()">Save Changes</button>
+      <button type="button" id="submitEditTask" onclick="cancleTask()">Save Changes</button>  
+    <button type="button" id="cancleTask">Cancel</button>
     </form>`;
   addtodo.innerHTML = items;
 
@@ -145,10 +145,7 @@ function handleEditTask(id) {
         alert("Please fill in all fields.");
       }
     });
-    
 }
-
- 
 
 // function handleEditTodo(id) {
 //   const todoToEdit = window.todos.find((todo) => todo.id === id);
