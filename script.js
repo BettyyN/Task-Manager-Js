@@ -28,16 +28,50 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   };
 
-  window.renderTasks = function () {
+  window.renderTasks = function (filter = "all") {
     var taskContainer = document.getElementById("taskcontainer");
     taskContainer.innerHTML = "";
-    tasks.forEach(function (task) {
+
+    const now = new Date();
+    const tasksToDisplay = window.tasks.filter((task) => {
+      const taskDueDate = new Date(task.dueDate);
+
+      if (filter === "today") {
+        return taskDueDate.toDateString() === now.toDateString();
+      }
+
+      if (filter === "week") {
+        const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+        const endOfWeek = new Date(
+          now.setDate(now.getDate() - now.getDay() + 6)
+        );
+        return taskDueDate >= startOfWeek && taskDueDate <= endOfWeek;
+      }
+
+      return true; // 'all' filter
+    });
+
+    tasksToDisplay.forEach(function (task) {
       var taskMarkup = displayTask(task);
       taskContainer.insertAdjacentHTML("beforeend", taskMarkup);
     });
   };
 
   renderTasks();
+  document.getElementById("filter-all").addEventListener("click", function () {
+    renderTasks("all");
+  });
+
+  document
+    .getElementById("filter-today")
+    .addEventListener("click", function () {
+      renderTasks("today");
+    });
+
+  document.getElementById("filter-week").addEventListener("click", function () {
+    renderTasks("week");
+  });
+
 });
 
 function displayText(clickedTask) {
@@ -53,6 +87,24 @@ function displayText(clickedTask) {
       : "fas fa-caret-up";
 }
 
+
+function showModal() {
+  document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+function showModala() {
+  document.getElementById("modal-add").style.display = "block";
+}
+
+function closeModala() {
+  document.getElementById("modal-add").style.display = "none";
+}
+
+
 function handleAddTodo() {
   const addtodo = document.getElementById("todobox");
   const items = `    
@@ -65,7 +117,7 @@ function handleAddTodo() {
     <label for="taskDueDate">Due date</label>
     <input type="date" id="taskDueDate">
     <button type="button" id="submitTask">Submit</button>
-    <button type="button" id="cancleTask">Cancel</button>
+    <button type="button" id="cancelTask">Cancel</button>
   </form>`;
   addtodo.innerHTML = items;
 
@@ -90,15 +142,14 @@ function handleAddTodo() {
       taskContainer.insertAdjacentHTML("beforeend", taskMarkup);
 
       document.getElementById("taskForm").reset();
+      closeModala();
     } else {
       alert("Please fill in all fields.");
     }
   });
 
-  document.getElementById("cancleTask").addEventListener("click", function () {
-    const addtodo = document.getElementById("todobox");
-    addtodo.innerHTML = "";
-  });
+   document.getElementById("cancelTask").addEventListener("click", closeModala);
+  showModala();
 }
 
 function handleDeleteTask(tobedeleted) {
@@ -112,7 +163,7 @@ function handleEditTask(id) {
   const taskToEdit = window.tasks.find((task) => task.id === id);
   if (!taskToEdit) return;
 
-  const addtodo = document.getElementById("todobox");
+  const addtodo = document.getElementById("modal-content");
   const items = `    
     <h2>Edit Task</h2>
     <form id="editTaskForm">
@@ -122,8 +173,8 @@ function handleEditTask(id) {
       <input type="text" id="editTaskDescription" value="${taskToEdit.description}">
       <label for="editTaskDueDate">Due date</label>
       <input type="date" id="editTaskDueDate" value="${taskToEdit.dueDate}">
-      <button type="button" id="submitEditTask" onclick="cancleTask()">Save Changes</button>  
-    <button type="button" id="cancleTask">Cancel</button>
+      <button type="button" id="submitEditTask">Save Changes</button>  
+    <button type="button" id="cancelEditTask">Cancel</button>
     </form>`;
   addtodo.innerHTML = items;
 
@@ -140,20 +191,15 @@ function handleEditTask(id) {
         );
         localStorage.setItem("tasks", JSON.stringify(window.tasks));
         renderTasks();
-        addtodo.innerHTML = ""; // Clear the edit form
+        closeModal();
       } else {
         alert("Please fill in all fields.");
       }
     });
+    document
+      .getElementById("cancelEditTask")
+      .addEventListener("click", closeModal);
+    showModal();
 }
 
-// function handleEditTodo(id) {
-//   const todoToEdit = window.todos.find((todo) => todo.id === id);
-//   const newTodo = prompt("Edit todo", todoToEdit.todoli);
-//   if (newTodo) {
-//     window.todos = window.todos.map((todo) =>
-//       todo.id === id ? { ...todo, todoli: newTodo } : todo
-//     );
-//     updateTodoLists();
-//   }
-// }
+

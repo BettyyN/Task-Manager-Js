@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Task Manager</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
     <link
@@ -19,10 +19,10 @@
       <div class="grid-item-filter">
         <h2>Filter</h2>
         <ul>
-          <li><i class="fas fa-tasks"></i>ALL</li>
-          <li><i class="fas fa-check"></i>Completed</li>
-          <li><i class="fas fa-calendar-week"></i>Week</li>
-          <li><i class="fas fa-calendar-day"></i>Today</li>
+          <li id="filter-all"><i class="fas fa-tasks"></i>ALL</li>
+          <li id="filter-completed"><i class="fas fa-check"></i>Completed</li>
+          <li id="filter-week"><i class="fas fa-calendar-week"></i>Week</li>
+          <li id="filter-today"><i class="fas fa-calendar-day"></i>Today</li>
         </ul>
       </div>
       <div class="tasks">
@@ -32,7 +32,13 @@
         <button id="addtaskBtn" onclick="handleAddTodo()">Add Task</button>
       </div>
     </section>
-    <div id="todobox">
+        <div id="modal" class="modal">
+      <div id="modal-content" class="modal-content">
+      </div>
+    </div>
+     <div id="modal-add" class="modal-add">
+      <div id="todobox" class="todobox">
+      </div>
     </div>
   </body>
 </html>
