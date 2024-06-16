@@ -128,11 +128,6 @@ section .tasks .task1 h3 {
   display: none;
 }
 
-#todobox{
-  width: 50%;
-  z-index:auto;
-  margin: auto;
-}
 
 #btn{
     color: white;
@@ -144,54 +139,93 @@ section .tasks .task1 h3 {
   height: 40px;
 }
 
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(88, 66, 102, 0.4); 
+  margin:auto;
+  align-self: center;
+}
 
-
-/* section {
-  width: 75%;
+.modal-content {
+  /* background-color: #fefefe; */
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 500px;
+  color: white;
   display: flex;
   flex-direction: column;
-  text-align: center;
-
 }
 
-.addtodo button {
+.modal-add{
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  left: 0;
   top: 0;
-  width: 130px;
-  height: 30px;
-  background-color: #000;
-  border: 1px solid #000;
-  right: 0%;
-  position: absolute;
-  top: 16px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(88, 66, 102, 0.4); 
+  margin:auto;
+  align-self: center;
+}
+
+.todobox {
+  /* background-color: #fefefe; */
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 500px;
   color: white;
-  bottom: 20px;
-}
-.addtodo {
-  margin-bottom: 50px;
-  position: relative;
-  width: 100%;
-}
-.lidiv {
-  margin-top: 10px;
-  width: 100%;
-}
-.todo-lists li {
   display: flex;
-  color: #000;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 10px;
-border: 1px solid #3a3a3a;
-padding: 10px;
-margin: 10px;
+  flex-direction: column;
 }
-button{
-    background-color: #0f0f0f;
-    border: 1px solid whitesmoke;
-    color: white;
-    text-decoration: solid;
-    font-weight: bolder;
-    font-size: small;
-    height: 30px;
-    width: 70px;
-} */
+
+
+#taskForm{
+  display: flex;
+  flex-direction: column;
+
+}
+
+#cancleTask{
+  color: white;
+  background-color: #6a0dad;
+  padding: 5px;
+  border-radius: 15px;
+  border: none;
+  width: 90px;
+  height: 40px;
+  margin-top: 5px;
+  display: inline;
+}
+#submitTask{
+  color: white;
+  background-color: #6a0dad;
+  padding: 5px;
+  border-radius: 15px;
+  border: none;
+  width: 90px;
+  height: 40px;
+  margin-top: 5px;
+  display: inline;
+
+}
+
+.active-filter {
+  background-color: #d3d3d3; 
+  color: #000; 
+}
+
+
+
