@@ -21,6 +21,7 @@ header {
   height: 80px;
   padding-top: 10px;
   padding-left: 20px;
+  display: flex;
 }
 header .header1 {
   color: white;
@@ -28,6 +29,24 @@ header .header1 {
 }
 header .title {
   color: #6a0dad;
+}
+#fa-fa-bars {
+  display: none;
+  font-size: 24px; 
+  cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+  header {
+    padding-right: 20px; /* Add padding to the right */
+  }
+
+  #fa-fa-bars {
+    display: block; /* Show on small screens */
+    margin-right: 20px; /* Add margin for spacing */
+    position: absolute;
+    top: 60px; /* Adjust top position */
+    right: 20px; /* Adjust right position */
+  }
 }
 
 section {
@@ -254,9 +273,3 @@ input:focus {
   }
 }
 
-.fa-bars {
-  position: relative;
-  top: 0;
-  left: 0;
-  font-size: 24px; /* Example font size */
-}
