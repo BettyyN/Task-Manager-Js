@@ -58,20 +58,32 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   renderTasks();
+
+  function setActiveFilter(filterId) {
+    const filters = document.querySelectorAll(".grid-item-filter ul li");
+    filters.forEach((filter) => {
+      filter.classList.remove("active-filter");
+    });
+    document.getElementById(filterId).classList.add("active-filter");
+  }
+
+
   document.getElementById("filter-all").addEventListener("click", function () {
     renderTasks("all");
+    setActiveFilter("filter-all");
   });
 
   document
     .getElementById("filter-today")
     .addEventListener("click", function () {
       renderTasks("today");
+      setActiveFilter("filter-today");
     });
 
   document.getElementById("filter-week").addEventListener("click", function () {
     renderTasks("week");
+    setActiveFilter("filter-week");
   });
-
 });
 
 function displayText(clickedTask) {
@@ -86,7 +98,6 @@ function displayText(clickedTask) {
       ? "fas fa-caret-down"
       : "fas fa-caret-up";
 }
-
 
 function showModal() {
   document.getElementById("modal").style.display = "block";
@@ -104,17 +115,13 @@ function closeModala() {
   document.getElementById("modal-add").style.display = "none";
 }
 
-
 function handleAddTodo() {
   const addtodo = document.getElementById("todobox");
   const items = `    
     <h2>Add New Task</h2>
   <form id="taskForm">
-    <label for="taskTitle">Title</label>
-    <input type="text" id="taskTitle">
-    <label for="taskDescription">Description</label>
-    <input type="text" id="taskDescription">
-    <label for="taskDueDate">Due date</label>
+    <input type="text" id="taskTitle" placeholder="Title">
+    <input type="text" id="taskDescription" placeholder="Description">
     <input type="date" id="taskDueDate">
     <button type="button" id="submitTask">Submit</button>
     <button type="button" id="cancelTask">Cancel</button>
@@ -148,7 +155,7 @@ function handleAddTodo() {
     }
   });
 
-   document.getElementById("cancelTask").addEventListener("click", closeModala);
+  document.getElementById("cancelTask").addEventListener("click", closeModala);
   showModala();
 }
 
@@ -167,11 +174,8 @@ function handleEditTask(id) {
   const items = `    
     <h2>Edit Task</h2>
     <form id="editTaskForm">
-      <label for="editTaskTitle">Title</label>
       <input type="text" id="editTaskTitle" value="${taskToEdit.title}">
-      <label for="editTaskDescription">Description</label>
       <input type="text" id="editTaskDescription" value="${taskToEdit.description}">
-      <label for="editTaskDueDate">Due date</label>
       <input type="date" id="editTaskDueDate" value="${taskToEdit.dueDate}">
       <button type="button" id="submitEditTask">Save Changes</button>  
     <button type="button" id="cancelEditTask">Cancel</button>
@@ -196,10 +200,8 @@ function handleEditTask(id) {
         alert("Please fill in all fields.");
       }
     });
-    document
-      .getElementById("cancelEditTask")
-      .addEventListener("click", closeModal);
-    showModal();
+  document
+    .getElementById("cancelEditTask")
+    .addEventListener("click", closeModal);
+  showModal();
 }
-
-
