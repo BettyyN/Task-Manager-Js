@@ -60,6 +60,7 @@ section .grid-item-filter li {
   height: 25px;
   align-items: center;
   padding: 5px;
+  padding-left: 10px;
 }
 
 section .grid-item-filter ul :hover {
@@ -67,7 +68,7 @@ section .grid-item-filter ul :hover {
   background-color: #4a4a4b;
 }
 
- #addtaskBtn{
+#addtaskBtn {
   color: white;
   background-color: #6a0dad;
   padding: 5px;
@@ -124,13 +125,12 @@ section .tasks .task1 h3 {
   margin-left: auto;
 }
 
-#textField{
+#textField {
   display: none;
 }
 
-
-#btn{
-    color: white;
+#btn {
+  color: white;
   background-color: #6a0dad;
   padding: 5px;
   border-radius: 15px;
@@ -140,92 +140,96 @@ section .tasks .task1 h3 {
 }
 
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
-  z-index: 1; 
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(88, 66, 102, 0.4); 
-  margin:auto;
+  background-color: rgba(88, 66, 102, 0.4);
+  margin: auto;
   align-self: center;
 }
 
 .modal-content {
   /* background-color: #fefefe; */
-  margin: 15% auto; 
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; 
+  width: 100%;
   max-width: 500px;
   color: white;
   display: flex;
   flex-direction: column;
 }
 
-.modal-add{
-  display: none; 
+.modal-add {
+  display: none;
   position: fixed;
-  z-index: 1; 
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(88, 66, 102, 0.4); 
-  margin:auto;
+  background-color: rgba(88, 66, 102, 0.4);
+  margin: auto;
   align-self: center;
 }
 
 .todobox {
   /* background-color: #fefefe; */
-  margin: 15% auto; 
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; 
+  width: 100%;
   max-width: 500px;
   color: white;
   display: flex;
   flex-direction: column;
 }
-
-
-#taskForm{
-  display: flex;
+#editTaskForm, #taskForm{
+    display: flex;
   flex-direction: column;
-
+  gap: 10px;
+  align-items: center;
 }
 
-#cancleTask{
+ h2{ 
+  color: white;
+  align-self: center;
+}
+
+input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 80%; /* Adjust width as needed */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+input:focus {
+  border-color: #6a0dad;
+  outline: none; /* Remove default browser outline */
+  box-shadow: 0 0 5px #322c36; /* Add a shadow on focus */
+}
+
+#cancelTask, #cancelEditTask, #submitEditTask,#submitTask  {
   color: white;
   background-color: #6a0dad;
   padding: 5px;
   border-radius: 15px;
   border: none;
-  width: 90px;
+  width: 80%;
   height: 40px;
   margin-top: 5px;
   display: inline;
-}
-#submitTask{
-  color: white;
-  background-color: #6a0dad;
-  padding: 5px;
-  border-radius: 15px;
-  border: none;
-  width: 90px;
-  height: 40px;
-  margin-top: 5px;
-  display: inline;
-
 }
 
 .active-filter {
-  background-color: #d3d3d3; 
-  color: #000; 
+  background-color: #242124;
+  color: #fff;
 }
-
-
-
