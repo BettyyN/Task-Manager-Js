@@ -44,7 +44,9 @@ section .grid-item-filter {
   background-color: #333333;
   border-radius: 30px;
   padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
 
 section .grid-item-filter h2 {
   font-size: large;
@@ -232,4 +234,29 @@ input:focus {
 .active-filter {
   background-color: #242124;
   color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+  section {
+    grid-template-columns: 100%; 
+  }
+
+  .grid-item-filter {
+    grid-column: 1 / span 1; 
+    margin-bottom: 10px; 
+    display: none;
+  }
+
+  .tasks {
+    grid-column: 1 / span 1;
+    width: 100%;
+    justify-self:center;
+  }
+}
+
+.fa-bars {
+  position: relative;
+  top: 0;
+  left: 0;
+  font-size: 24px; /* Example font size */
 }
