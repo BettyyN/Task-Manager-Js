@@ -37,15 +37,15 @@ header .title {
 }
 @media only screen and (max-width: 768px) {
   header {
-    padding-right: 20px; /* Add padding to the right */
+    padding-right: 20px; 
   }
 
   #fa-fa-bars {
-    display: block; /* Show on small screens */
-    margin-right: 20px; /* Add margin for spacing */
+    display: block;
+    margin-right: 20px; 
     position: absolute;
-    top: 60px; /* Adjust top position */
-    right: 20px; /* Adjust right position */
+    top: 60px; 
+    right: 20px; 
   }
 }
 
