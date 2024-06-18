@@ -272,4 +272,8 @@ input:focus {
     justify-self:center;
   }
 }
-
+#img-t{
+  width: 200px;
+  height: 180px;
+  padding-left: 25px;
+}
